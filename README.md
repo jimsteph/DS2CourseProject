@@ -4,11 +4,11 @@ This is the course project for the _Getting and Cleaning Data_ Coursera course.
 
 There were five tasks to complete to pass this project:
 
-1 Merges the training and the test sets to create one data set.
-2 Extracts only the measurements on the mean and standard deviation for each measurement. 
-3 Uses descriptive activity names to name the activities in the data set
-4 Appropriately labels the data set with descriptive variable names. 
-5 Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names. 
+5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
 The script starts with _Task 0_ downloading the required file to the working
 directory, then decompressing it into it's default directory 
@@ -19,18 +19,18 @@ Next, _Task 1_, _Task 2_, and _Task 4_ were all done together.  I started by
 reading all eight required files from the decompressed archive.  The files were:
 
 * Files that list the subject numbers:
-* * `./UCI HAR Dataset/test/subject_test.txt`
-* * `./UCI HAR Dataset/train/subject_train.txt`
+  * `./UCI HAR Dataset/test/subject_test.txt`
+  * `./UCI HAR Dataset/train/subject_train.txt`
 * Files that list the activity (by number)
-* * `./UCI HAR Dataset/test/Y_test.txt`
-* * `./UCI HAR Dataset/test/train/Y_train.txt`
+  * `./UCI HAR Dataset/test/Y_test.txt`
+  * `./UCI HAR Dataset/test/train/Y_train.txt`
 * A file that lists the activity names that correspond to the activity number:
-* * `./UCI HAR Dataset/activity_lables.txt`
+  * `./UCI HAR Dataset/activity_lables.txt`
 * Files that contain the measurement data.  Each file contains 561 measurements:
-* * `./UCI HAR Dataset/test/X_test.txt`
-* * `./UCI HAR Dataset/train/X_train.txt`
+  * `./UCI HAR Dataset/test/X_test.txt`
+  * `./UCI HAR Dataset/train/X_train.txt`
 * A file that lists names of each measurement:
-* * `./UCI HAR Dataset/features.txt`
+  * `./UCI HAR Dataset/features.txt`
 
 The measurement data was subsetted by removing any column that did not contain
 _mean_, _Mean_, _std_, or _Std_.  The three training files and the three testing
