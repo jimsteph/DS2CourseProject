@@ -23,7 +23,7 @@
 # Task 1: Merge training and test sets to create one data set.
 # Task 2: Extract only the measurements on the mean and standard deviation for each measurement.
 # Task 4: Appropriately labels the data set with descriptive variable names.
-## Start by reading in all six files
+## Start by reading in all eight files:
 testSubject <- read.table("./UCI HAR Dataset/test/subject_test.txt", header = FALSE, sep = ",", col.names = "Subject", colClasses = "integer")
 trainSubject <- read.table("./UCI HAR Dataset/train/subject_train.txt", header = FALSE, sep = ",", col.names = "Subject", colClasses = "integer")
 testY <- read.table("./UCI HAR Dataset/test/Y_test.txt", header = FALSE, sep = ",", col.names = "Activities", colClasses = "integer")
@@ -31,6 +31,7 @@ trainY <- read.table("./UCI HAR Dataset/train/Y_train.txt", header = FALSE, sep 
 XNames <- read.table("./UCI HAR Dataset/features.txt", header = FALSE, sep = "")
 testX <- read.table("./UCI HAR Dataset/test/X_test.txt", header = FALSE, sep = "", strip.white = TRUE, col.names = XNames[, 2])
 trainX <- read.table("./UCI HAR Dataset/train/X_train.txt", header = FALSE, sep = "", strip.white = TRUE, col.names = XNames[, 2])
+ActivityLables <- read.table("./UCI HAR Dataset/activity_lables.txt", header = FALSE, sep = "")
 ## keep only columns with "mean", "Mean", "std", or "Std" in their names
 testX <- testX[, grepl("Mean", XNames[,2]) | grepl("mean", XNames[,2]) | grepl("Std", XNames[,2]) | grepl("std", XNames[,2])]
 trainX <- trainX[, grepl("Mean", XNames[,2]) | grepl("mean", XNames[,2]) | grepl("Std", XNames[,2]) | grepl("std", XNames[,2])]
