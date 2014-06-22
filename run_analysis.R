@@ -70,3 +70,4 @@ tidyData <- tidyData[order(tidyData$Subject, tidyData$Activity),]
 
 ## and finally, write it!
 write.csv(tidyData, file = "./tidyData.csv", quote = FALSE, row.names = FALSE)
+write.csv(tidyData, file = "./tidyData.txt", quote = FALSE, row.names = FALSE)
