@@ -41,14 +41,32 @@ trainData <- cbind(trainSubject, trainY, "TestOrTrain" = c("Train"), trainX)
 allData <- rbind(testData, trainData)
 
 # Task 3: Use descriptive activity names to name the activities in the data set
-allData <- cbind(allData[,c(1,2)], "ActivityName" = "", allData[,c(3: )])
+allData <- cbind(allData[,c(1,2)], "ActivityName" = "", allData[,c(3:89)])
 allData$ActivityName <- ActivityLables[allData$Activities, 2]
+## get rid of some columns that aren't really needed
+allData <- allData[,c(1, 3, 5:90)]
 
 # Task 5: Create a second, independent tidy data set with the average of each variable for each
 #     activity and each subject.
 tidyData <- data.frame()  # create empty data frame for the tidy data
-for (i in allData$Subject)
-  for (j in allData$ActivityName) {
-    tempRow <- rbind("Subject" = i, "ActivityName" = j, colMeans(allData[allData$Subject == i & allData$ActivityName == j, c(5:90)]))
+
+for (i in unique(allData$Subject)) {
+  tempRow <- data.frame() # reset the data frame
+  for (j in unique(allData$ActivityName)) {
+    tempRow <- cbind(as.integer(i), j)
+    for (k in 3:88) {
+      tempRow <- cbind(tempRow, mean(allData[allData[, 1] == i & allData[, 2] == j, k]))
+    }
     tidyData <- rbind(tidyData, tempRow) 
   }
+}
+
+## remove factors: I don't like them!
+tidyData[,1] <- as.integer(tidyData[,1])
+
+## name the variables and order the output
+names(tidyData) <- c("Subject", "Activity", names(allData[,3:88]))
+tidyData <- tidyData[order(tidyData$Subject, tidyData$Activity),]
+
+## and finally, write it!
+write.csv(tidyData, file = "./tidyData.csv", quote = FALSE, row.names = FALSE)
